@@ -35,19 +35,16 @@ bool add_element(int id, const char *emp_name, bool is_permanent) {
     printf("[DEBUG] No person element currently exists, initializing a new "
            "dynamic "
            "array sequence\n");
-    
-    init_elem = new_emp_alloc = malloc(1 * sizeof(employee));
+
+    init_elem = new_emp_alloc = malloc(sizeof(employee));
   } else {
     printf("[DEBUG] Array sequence already initialized. Adding a new person "
            "entry\n");
-    
-    new_emp_alloc = (employee *)mmap(
-        (void *)(init_elem + (curr_idx + 1)), 
-        sizeof(employee),
-        PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED | MAP_NOCACHE, 
-        -1, 0
-    );
-    
+
+    new_emp_alloc = (employee *)mmap((void *)(init_elem + (curr_idx + 1)),
+                                     sizeof(employee), PROT_READ | PROT_WRITE,
+                                     MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+
     if (new_emp_alloc == MAP_FAILED) {
       perror("[DEBUG] Memory allocation for new employee failed\n");
       return false;

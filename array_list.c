@@ -28,6 +28,20 @@ int main() {
   return 0;
 }
 
+/*
+ * Creates a new employee structure object in memory and appends to a
+ * "list". This attempts to perform the allocation immediately next to 
+ * the latest allocated structure, effectively manufacturing a contiguous
+ * sequence without having to use a standard array.
+ * 
+ * PS: sadly, this is a poor way of handling it: buggy and inefficient to
+ * say the least. For starters, `mmap` is allocating the object at a different
+ * virtual address vs intended, as we aren't passing the `MAP_FIXED` flag 
+ * (which is also potentially dangerous). Resultantly, the traversal
+ * in the `main` function above fails as the second employee element
+ * is not exactly consecutively allocated to the first employee
+ * object. It's a failed experiment, but a successful learning :)
+ */
 bool add_element(int id, const char *emp_name, bool is_permanent) {
   employee *new_emp_alloc;
 

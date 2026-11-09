@@ -37,7 +37,7 @@ bool reg_employee(int id, const char *emp_name, bool is_permanent) {
   if (curr_idx == -1 && init_elem == NULL) {
     // This (almost) always means no paged mapping has been created yet,
     // so we ask one to be created with default page size.
-    printf("Mapping a new memory segment\n");
+    printf("[DEBUG] Mapping a new memory segment\n");
     page = __alloc_new_mem_page(0);
     if (page == NULL) {
         printf("Error mapping memory, exiting");

@@ -4,8 +4,7 @@ An erroneous experimental strategy designed to force memory mapping right next t
 
 #### Experiment Result
 
-<img width="956" height="657" alt="image" src="https://github.com/user-attachments/assets/6cd469fb-6a61-494b-b9c5-0bb7a21fb871" />
-
+<img width="928" height="369" alt="image" src="https://github.com/user-attachments/assets/6664a14c-c332-41c7-b4b2-d699f2c10812" />
 
 ### Strategy 2: Allocating Objects in Mapped Memory
 

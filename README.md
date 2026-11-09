@@ -11,4 +11,4 @@ An erroneous experimental strategy designed to force memory mapping right next t
 This strategy explores mapping a 4096-byte region in the Virtual Address Space via `mmap()` and allocating objects inside it serially via consecutive offsets. The output matches expectation.
 
 #### Experiment Result
-<img width="2090" height="1350" alt="image" src="https://github.com/user-attachments/assets/efc72490-b766-482c-a9af-fabe843cf34b" />
+<img width="928" alt="image" src="https://github.com/user-attachments/assets/4929b881-110c-4850-8466-a38dfd74ad45" />

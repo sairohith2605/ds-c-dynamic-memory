@@ -12,13 +12,13 @@ typedef struct person {
 int curr_idx = -1;
 employee *init_elem;
 
-bool add_element(int id, const char *emp_name, bool is_permanent);
-void* alloc_new_mem_page(size_t page_len_opt);
+bool reg_employee(int id, const char *emp_name, bool is_permanent);
+void* __alloc_new_mem_page(size_t page_len_opt);
 
 int main() {
   printf("==== REGISTERING NEW EMPLOYEES ====\n");
-  add_element(1837, "Sai Rohith", true);
-  add_element(1938, "Abhishek Sharma", false);
+  reg_employee(1837, "Sai Rohith", true);
+  reg_employee(1938, "Abhishek Sharma", false);
 
   printf("\n==== RETRIEVING EMPLOYEE RECORDS ====\n\n");
   for (int i = 0; i <= curr_idx; i++) {
@@ -30,7 +30,7 @@ int main() {
   return 0;
 }
 
-bool add_element(int id, const char *emp_name, bool is_permanent) {
+bool reg_employee(int id, const char *emp_name, bool is_permanent) {
   employee *new_emp_alloc;
   void* page;
   
@@ -38,7 +38,7 @@ bool add_element(int id, const char *emp_name, bool is_permanent) {
     // This (almost) always means no paged mapping has been created yet,
     // so we ask one to be created with default page size.
     printf("Mapping a new memory segment\n");
-    page = alloc_new_mem_page(0);
+    page = __alloc_new_mem_page(0);
     if (page == NULL) {
         printf("Error mapping memory, exiting");
 	exit(EXIT_FAILURE);
@@ -61,7 +61,7 @@ bool add_element(int id, const char *emp_name, bool is_permanent) {
   return true;
 }
 
-void* alloc_new_mem_page(size_t page_len_opt) {
+void* __alloc_new_mem_page(size_t page_len_opt) {
     // We silently fallback to 4096 if the user supplies a value not multiple of 4096, besides defaulting.
     size_t page_size_len = page_len_opt <= 0 || page_len_opt % 4096 != 0 ? 4096 : page_len_opt;
     void *page_map = mmap(NULL, page_size_len, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);

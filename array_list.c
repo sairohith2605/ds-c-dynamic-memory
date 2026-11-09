@@ -21,7 +21,7 @@ int main() {
 
   printf("\n==== RETRIEVING EMPLOYEE RECORDS ====\n\n");
   for (int i = 0; i <= curr_idx; i++) {
-    employee *emp_rcd = (employee *)init_elem + i * sizeof(employee);
+    employee *emp_rcd = (employee *)(init_elem + i);
     printf("Employee ID: %d\n", emp_rcd->emp_id);
   }
   printf("Added elements successfully\n");

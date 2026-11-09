@@ -22,7 +22,7 @@ int main() {
 
   printf("\n==== RETRIEVING EMPLOYEE RECORDS ====\n\n");
   for (int i = 0; i <= curr_idx; i++) {
-    employee *emp_rcd = (employee *)init_elem + i * sizeof(employee);
+    employee *emp_rcd = (employee *)(init_elem + i);
     const char* emp_status = emp_rcd->is_permanent ? "PERMANENT" : "CONTRACTOR";
     printf("[%s] Employee ID: %d; Name: %s\n", emp_status, emp_rcd->emp_id, emp_rcd->name);
   }
@@ -49,7 +49,7 @@ bool reg_employee(int id, const char *emp_name, bool is_permanent) {
     new_emp_alloc = (employee*)page;
     init_elem = new_emp_alloc;
   } else {
-    new_emp_alloc = (employee*) (init_elem + ((curr_idx+1) * sizeof(employee)));
+    new_emp_alloc = (employee*) (init_elem + (curr_idx+1));
   }
 
   new_emp_alloc->emp_id = id;

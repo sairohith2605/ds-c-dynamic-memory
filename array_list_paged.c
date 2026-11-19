@@ -41,7 +41,7 @@ bool reg_employee(int id, const char *emp_name, bool is_permanent) {
     page = __alloc_new_mem_page(0);
     if (page == NULL) {
         printf("Error mapping memory, exiting");
-	exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
 
     // Initialize the first element at the base address of the mapped
